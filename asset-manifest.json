@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/kanji-test-maker/static/js/main.14af07a5.js",
-    "index.html": "/kanji-test-maker/index.html",
-    "main.14af07a5.js.map": "/kanji-test-maker/static/js/main.14af07a5.js.map"
+    "main.js": "/static/js/main.3afa824c.js",
+    "index.html": "/index.html",
+    "main.3afa824c.js.map": "/static/js/main.3afa824c.js.map"
   },
   "entrypoints": [
-    "static/js/main.14af07a5.js"
+    "static/js/main.3afa824c.js"
   ]
 }
