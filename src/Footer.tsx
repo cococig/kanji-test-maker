@@ -1,3 +1,4 @@
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
   Container,
@@ -29,6 +30,10 @@ export default function Footer() {
           <Link onClick={onOpenTerm}>利用規約</Link>
           <TermModal isOpen={isOpenTerm} onClose={onCloseTerm} />
           <Link href={"https://twitter.com/cococig"}>Contact</Link>
+          <Link href="https://github.com/cococig/kanji-test-maker" isExternal>
+            GitHub
+            <ExternalLinkIcon mx="2px" />
+          </Link>
         </Stack>
       </Container>
 
