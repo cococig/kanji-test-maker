@@ -1,6 +1,6 @@
 import {
   Button,
-  Link,
+  //Link,
   ListItem,
   Modal,
   ModalBody,
@@ -118,6 +118,7 @@ const PrivacyPolicyModal: React.FC<Props> = (props) => {
             このサービスは、トラフィックデータの収集のためにCookie（クッキー）を使用しています。トラフィックデータは匿名で収集されており、個人を特定するものではありません。
           </Text>
           <br />
+          {/*
           <Text as={"h1"} fontSize={"xl"}>
             広告配信
           </Text>
@@ -133,6 +134,7 @@ const PrivacyPolicyModal: React.FC<Props> = (props) => {
             をご覧ください。
           </Text>
           <br />
+          */}
           <Text as={"h1"} fontSize={"xl"}>
             免責事項
           </Text>

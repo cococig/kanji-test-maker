@@ -29,7 +29,9 @@ export default function Footer() {
           <PrivacyPolicyModal isOpen={isOpenPrivacyPolicy} onClose={onClosePrivacyPolicy} />
           <Link onClick={onOpenTerm}>利用規約</Link>
           <TermModal isOpen={isOpenTerm} onClose={onCloseTerm} />
-          <Link href={"https://twitter.com/cococig"}>Contact</Link>
+          <Link href={"https://twitter.com/cococig"} isExternal>
+            Contact
+          </Link>
           <Link href="https://github.com/cococig/kanji-test-maker" isExternal>
             GitHub
             <ExternalLinkIcon mx="2px" />
@@ -52,7 +54,11 @@ export default function Footer() {
           align={{ base: "center", md: "center" }}
         >
           <Text>
-            © 2022 <Link href="https://twitter.com/cococig">Cococig</Link>. All rights reserved
+            © 2022{" "}
+            <Link href="https://twitter.com/cococig" isExternal>
+              Cococig
+            </Link>
+            . All rights reserved
           </Text>
         </Container>
       </Box>
