@@ -3,7 +3,7 @@
   <head prefix="og: https://ogp.me/ns#">
     <meta charset="utf-8" />
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YH6HT4KYTZ"></script>
+    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH6HT4KYTZ"></script>-->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -64,5 +64,27 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      // 参考：https://www.nanakazoku.com/memo/wp-code-lighthouse
+      function lazyAnalyticsScript() {
+        var scrollFirstTime = 1;
+        window.addEventListener("scroll", oneTimeFunction, false);
+        window.addEventListener("mousemove", oneTimeFunction, false);
+        function oneTimeFunction() {
+          if (scrollFirstTime === 1) {
+            scrollFirstTime = 0;
+            var adScript = document.createElement("script");
+            adScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-YH6HT4KYTZ';
+            document.body.appendChild(adScript);
+            var adScript2 = document.createElement("script");
+            adScript2.innerHTML = 'window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-YH6HT4KYTZ");';
+            document.body.appendChild(adScript2);
+            window.removeEventListener("scroll", oneTimeFunction, false);
+            window.removeEventListener("mousemove", oneTimeFunction, false);
+          }
+        }
+      }
+      lazyAnalyticsScript();
+      </script>
   </body>
 </html>
