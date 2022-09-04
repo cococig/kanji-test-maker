@@ -2,6 +2,7 @@ import { Flex, Image } from "@chakra-ui/react";
 import Footer from "./Footer";
 import Form from "./Form";
 import Header from "./Header";
+import Notice from "./Notice";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         h={"auto"}
       />
       <Header />
+      <Notice />
       <Form />
       <Footer />
     </Flex>
