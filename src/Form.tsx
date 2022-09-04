@@ -46,8 +46,8 @@ const Form = () => {
       ...watchFieldArray[index],
     };
   });
-  const onSubmit = (data: QuestionData) => {
-    const [qImage, aImage] = createImage(data);
+  const onSubmit = async (data: QuestionData) => {
+    const [qImage, aImage] = await createImage(data);
     setQuestionImage(qImage);
     setAnserImage(aImage);
   };
