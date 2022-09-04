@@ -1,6 +1,6 @@
 export const FontList = {
   default: "游明朝",
-  notoSerif: "Noto+Serif+JP",
+  notoSerif: "Noto Serif JP",
 };
 
 export const getGoogleFont = async (fontFamilyName: string, text: string) => {
@@ -14,9 +14,9 @@ export const getGoogleFont = async (fontFamilyName: string, text: string) => {
     const match = css.match(/url\(.+?\)/g);
     if (!match) throw new Error(`フォントが見つかりませんでした: ${fontFamilyName},${css}`);
     for (const url of match) {
-      const font = new FontFace(family, url);
-      const f = await font.load();
-      document.fonts.add(f);
+      const font = new FontFace(fontFamilyName, url);
+      await font.load();
+      document.fonts.add(font);
     }
     return true;
   }
