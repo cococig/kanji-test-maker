@@ -1,4 +1,3 @@
-import { createCanvas, CanvasRenderingContext2D } from "canvas";
 import { FontList, getGoogleFont } from "./fonts";
 
 //問題数<=10の場合1段組
@@ -280,8 +279,11 @@ export async function createImage(data: QuestionData) {
     fontFamily = FontList.notoSerif;
     await getGoogleFont(fontFamily, text);
   }
-  const canvas = createCanvas(1200, 900);
+  const canvas = document.createElement("canvas");
+  canvas.width = 1200;
+  canvas.height = 900;
   const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Canvasを作成できませんでした");
   ctx.fillStyle = "white";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
