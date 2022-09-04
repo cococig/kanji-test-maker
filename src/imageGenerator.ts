@@ -1,4 +1,5 @@
 import { createCanvas, CanvasRenderingContext2D } from "canvas";
+import { FontList, getGoogleFont } from "./fonts";
 
 //問題数<=10の場合1段組
 //10<問題数<=20の場合2段組
@@ -8,10 +9,33 @@ import { createCanvas, CanvasRenderingContext2D } from "canvas";
 // NOTE:https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/font
 // NOTE:https://developer.mozilla.org/en-US/docs/Web/API/FontFace
 
-const FONT_FACE = "游明朝";
+let fontFamily = "";
+
+const QUESTION_NUMBER = [
+  "①",
+  "②",
+  "③",
+  "④",
+  "⑤",
+  "⑥",
+  "⑦",
+  "⑧",
+  "⑨",
+  "⑩",
+  "⑪",
+  "⑫",
+  "⑬",
+  "⑭",
+  "⑮",
+  "⑯",
+  "⑰",
+  "⑱",
+  "⑲",
+  "⑳",
+];
 
 const drawWaterMark = (ctx: CanvasRenderingContext2D) => {
-  ctx.font = `20px "${FONT_FACE}"`;
+  ctx.font = `20px "${fontFamily}"`;
   ctx.fillStyle = "gray";
   ctx.fillText("漢字テストメーカー", 1100, 870);
 };
@@ -25,7 +49,7 @@ const tategaki = (
   fontSize: number,
   fontColor = "black",
 ) => {
-  ctx.font = `${fontSize}px "${FONT_FACE}"`;
+  ctx.font = `${fontSize}px "${fontFamily}"`;
   const lineHeight = ctx.measureText("あ").width;
   Array.prototype.forEach.call(text, function (ch, i) {
     let punctuationFlag: boolean = false; // 句読点かどうかのフラグ
@@ -59,11 +83,11 @@ const modifyFontSize = (
   defaultFontSize = 27,
 ) => {
   let nowFontSize = defaultFontSize;
-  ctx.font = `${defaultFontSize}px "${FONT_FACE}"`;
+  ctx.font = `${defaultFontSize}px "${fontFamily}"`;
   let lineHeight = ctx.measureText("あ").width;
   while (textLength * lineHeight > maxHeight) {
     nowFontSize -= 1;
-    ctx.font = `${nowFontSize}px "${FONT_FACE}"`;
+    ctx.font = `${nowFontSize}px "${fontFamily}"`;
     lineHeight = ctx.measureText("あ").width;
   }
   return nowFontSize;
@@ -98,7 +122,7 @@ const drawWriteBox = (
   }
   // よみがな描画開始高さの設定
   const boxHalfHeight = y + lineHeight * questionLength; // ボックスの真ん中の高さ
-  ctx.font = `${yomiganaFontSize}px "${FONT_FACE}"`;
+  ctx.font = `${yomiganaFontSize}px "${fontFamily}"`;
   const yomiganaLineHeight = ctx.measureText("あ").width;
   const yomiganaHalfHeight = (yomigana.length * yomiganaLineHeight) / 2; // よみがなの高さの半分
   const yomiganaStartHeight = boxHalfHeight - yomiganaHalfHeight;
@@ -123,32 +147,10 @@ const drawQuestion = (
   maxHeight: number,
 ) => {
   // 基本設定
-  ctx.font = `27px "${FONT_FACE}"`;
+  ctx.font = `27px "${fontFamily}"`;
   const defaultLineHeight = ctx.measureText("あ").width;
   ctx.fillStyle = "black";
   // 問題番号の描画
-  const QUESTION_NUMBER = [
-    "①",
-    "②",
-    "③",
-    "④",
-    "⑤",
-    "⑥",
-    "⑦",
-    "⑧",
-    "⑨",
-    "⑩",
-    "⑪",
-    "⑫",
-    "⑬",
-    "⑭",
-    "⑮",
-    "⑯",
-    "⑰",
-    "⑱",
-    "⑲",
-    "⑳",
-  ];
   ctx.fillText(QUESTION_NUMBER[questionNumber], x, y);
   // y値再設定（問題番号分空ける）
   y = y + defaultLineHeight * 1.5;
@@ -157,7 +159,7 @@ const drawQuestion = (
   if (yomikaki === false) {
     // フォントサイズの設定
     const fontSize = modifyFontSize(ctx, text.length, maxHeight);
-    ctx.font = `${fontSize}px "${FONT_FACE}"`;
+    ctx.font = `${fontSize}px "${fontFamily}"`;
     const lineHeight = ctx.measureText("あ").width;
 
     // 問題の描画
@@ -205,7 +207,7 @@ const drawAnswer = (
   maxHeight: number,
 ) => {
   // 基本設定
-  ctx.font = `27px "${FONT_FACE}"`;
+  ctx.font = `27px "${fontFamily}"`;
   const defaultLineHeight = ctx.measureText("あ").width;
   const yomiganaFontSize = 18;
   const questionStartPoint = text.indexOf(question);
@@ -215,7 +217,7 @@ const drawAnswer = (
   if (yomikaki === false) {
     // 問題文フォントサイズの設定
     const questionFontSize = modifyFontSize(ctx, text.length, maxHeight);
-    ctx.font = `${questionFontSize}px "${FONT_FACE}"`;
+    ctx.font = `${questionFontSize}px "${fontFamily}"`;
     const questionLineHeight = ctx.measureText("あ").width;
     // 解答フォントサイズの設定
     const answerFontSize = modifyFontSize(
@@ -226,7 +228,7 @@ const drawAnswer = (
         (y + questionLineHeight * questionStartPoint),
       yomiganaFontSize,
     );
-    ctx.font = `${answerFontSize}px "${FONT_FACE}"`;
+    ctx.font = `${answerFontSize}px "${fontFamily}"`;
     const answerMargin = 5;
     // よみがなの描画
     tategaki(
@@ -246,7 +248,7 @@ const drawAnswer = (
       text.length - question.length,
       maxHeight - defaultLineHeight * question.length * 2,
     );
-    ctx.font = `${fontSize}px "${FONT_FACE}"`;
+    ctx.font = `${fontSize}px "${fontFamily}"`;
     const lineHeight = ctx.measureText("あ").width;
     Array.prototype.forEach.call(question, function (ch, i) {
       ctx.fillStyle = "red";
@@ -258,13 +260,33 @@ const drawAnswer = (
   }
 };
 
-export function createImage(data: QuestionData) {
+export async function createImage(data: QuestionData) {
+  const ua = window.navigator.userAgent.toLowerCase(); // UAを取得
+  if (ua.indexOf("windows nt") !== -1) {
+    // windowsの場合、フォントを游明朝に設定
+    fontFamily = FontList.default;
+  } else {
+    // それ以外はGoogle Fontを取得
+
+    // 画像中で使用するフォントを列挙
+    let allQuestionsText = "漢字テストメーカー";
+    allQuestionsText += QUESTION_NUMBER.join("");
+    for (const examFormData of data.examForm) {
+      allQuestionsText += examFormData.all + examFormData.yomigana;
+    }
+    let text = Array.from(new Set(Array.from(allQuestionsText))).join(""); // 重複した文字の削除
+
+    // フォントの取得
+    fontFamily = FontList.notoSerif;
+    await getGoogleFont(fontFamily, text);
+  }
   const canvas = createCanvas(1200, 900);
   const ctx = canvas.getContext("2d");
   ctx.fillStyle = "white";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.font = `27px "${FONT_FACE}"`;
+  await document.fonts.ready;
+  ctx.font = `27px "${fontFamily}"`;
   ctx.textAlign = "center";
   ctx.textBaseline = "top";
   const maxHeight = data.examForm.length < 10 ? 800 : 360;
