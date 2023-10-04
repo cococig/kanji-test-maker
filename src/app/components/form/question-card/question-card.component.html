@@ -3,7 +3,7 @@
     <div class="flex flex-row justify-content-between">
       <h2>{{index + 1}}問目</h2>
       <div class="flex flex-row gap-2">
-        <p-selectButton pRipple [options]="[{label: '読み', value: 'yomi'}, {label: '書き', value: 'kaki'}]"
+        <p-selectButton pRipple [options]="[{label: '書き', value: 'kaki'}, {label: '読み', value: 'yomi'}]"
           formControlName="questionType"></p-selectButton>
         <p-button pRipple type="button" icon="pi pi-trash" [disabled]="isTrashDisabled"
           styleClass="p-button-secondary p-button-outlined" (click)="remove.emit(index)"></p-button>

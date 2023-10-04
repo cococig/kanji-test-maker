@@ -114,7 +114,7 @@ export class FormComponent implements OnInit {
 					fullText: [""],
 					targetKanji: [""],
 					yomigana: [""],
-					questionType: ["yomi"],
+					questionType: ["kaki"],
 				},
 				{
 					validators: [isIncludeTargetKanjiInFullText, maxLengthFullText],
@@ -197,7 +197,7 @@ export class FormComponent implements OnInit {
 							fullText: [""],
 							targetKanji: [""],
 							yomigana: [""],
-							questionType: ["yomi"],
+							questionType: ["kaki"],
 						},
 						{
 							validators: [isIncludeTargetKanjiInFullText, maxLengthFullText],
