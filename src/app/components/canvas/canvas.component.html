@@ -1,0 +1,16 @@
+<div class="flex my-3 w-full justify-content-between">
+  <div>
+    <p-toggleButton onLabel="解答を表示する" offLabel="解答を非表示にする" [(ngModel)]="isHiddenAnswerCanvas"></p-toggleButton>
+  </div>
+  <div class="flex gap-2">
+    <p-button icon=" pi pi-download" label="問題用紙をダウンロード" (onClick)="downloadQuestionImage()"></p-button>
+    <p-button icon="pi pi-download" label="解答用紙をダウンロード" (onClick)="downloadAnswerImage()"></p-button>
+  </div>
+</div>
+<div #layeredCanvas class="layeredCanvas">
+  <canvas #answerCanvas id="answerCanvas" width="1200" height="900"
+    [ngStyle]="{visibility:isHiddenAnswerCanvas?'hidden':'visible'}"></canvas>
+  <canvas #questionCanvas id="questionCanvas" width="1200" height="900"></canvas>
+  <canvas #bgCanvas id="bgCanvas" width="1200" height="900"></canvas>
+</div>
+<p-contextMenu [target]="layeredCanvas" [model]="contextMenu" appendTo="body"></p-contextMenu>

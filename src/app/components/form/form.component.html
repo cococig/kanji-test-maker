@@ -1,0 +1,20 @@
+<div class="flex flex-column flex-grow-1 mx-auto align-items-center justify-content-start w-full">
+  <div class="flex flex-row my-3 gap-3 w-full justify-content-end">
+    <p-splitButton label="1問追加" icon="pi pi-plus" [disabled]="questions.length === 20" (onClick)="addQuestion(1)"
+      [model]="addQuestionButtonItems"></p-splitButton>
+    <p-splitButton label="すべて読み問題に変更" (onClick)="changeAllQuestionType('yomi')"
+      [model]="changeAllQuestionTypeButtonItems"></p-splitButton>
+    <p-menu #menu [model]="questionDataImportExportMenuItems" [popup]="true"></p-menu>
+    <button pButton pRipple (click)="menu.toggle($event)" icon="pi pi-bars" label="問題のインポート/エクスポート"></button>
+  </div>
+  <div class="grid">
+    <ng-container [formGroup]="questionsForm">
+      <ng-container formArrayName="questions">
+        <ng-container *ngFor="let question of questions.controls; let i=index">
+          <app-question-card [index]="i" [formGroup]="question" [isTrashDisabled]="isTrashDisabled"
+            (remove)="removeQuestion($event)" class="col-6"></app-question-card>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

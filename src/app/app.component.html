@@ -1,0 +1,13 @@
+<p-toast position="top-center"></p-toast>
+<div class="flex flex-column min-h-screen">
+  <p-image src="/assets/hero.webp" alt="トップページの紹介画像" width="100%" height="auto"></p-image>
+  <app-header></app-header>
+  <div class="grid m-3">
+    <app-form class="col-6"></app-form>
+    <p-divider layout="vertical" class="col-fixed"></p-divider>
+    <div class="col-5">
+      <app-canvas class="sticky" [style]="{top: '25%'}"></app-canvas>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

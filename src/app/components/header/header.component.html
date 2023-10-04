@@ -1,0 +1,16 @@
+<nav class="flex flex-wrap justify-content-between p-4 sticky top-0 text-white-alpha-900"
+  [style]="{backgroundColor:'#4b6251'}">
+  <div>
+    <h1 class="text-4xl" [style]="{'letter-spacing': '-0.05em'}">漢字テストメーカー</h1>
+  </div>
+  <div>
+    <p-button (click)="showAboutModal()" label="このサイトについて" styleClass="p-button-link text-white-alpha-900"></p-button>
+    <p-button (click)="showUsageModal()" label="つかいかた" styleClass="p-button-link text-white-alpha-900"></p-button>
+    <p-button (click)="showUpdateHistoryModal()" label="更新履歴"
+      styleClass="p-button-link text-white-alpha-900"></p-button>
+  </div>
+</nav>
+
+<app-about-modal [(visible)]="visibleAboutModal"></app-about-modal>
+<app-usage-modal [(visible)]="visibleUsageModal"></app-usage-modal>
+<app-update-history-modal [(visible)]="visibleUpdateHistoryModal"></app-update-history-modal>

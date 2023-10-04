@@ -1,0 +1,14 @@
+<p-dialog header="このサイトについて" [visible]="visible" (visibleChange)="visibleChange.emit($event)" [modal]="true"
+  [draggable]="false" [dismissableMask]="true" [resizable]="false">
+  <ul>
+    <li>オリジナルの漢字テストが作成可能</li>
+    <li>最大20問まで作成可能</li>
+    <li>読み問題/書き問題両対応</li>
+    <li>解答画像も同時に生成</li>
+    <li>作成した問題の内容の収集等は一切行っていません</li>
+    <li>画像の非商用利用は自由、商用利用は一部制限付きで自由</li>
+    <ul>
+      <li>詳しくは利用規約をご覧ください</li>
+    </ul>
+  </ul>
+</p-dialog>

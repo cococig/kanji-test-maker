@@ -1,0 +1,35 @@
+<p-card class="flex justify-content-center">
+  <ng-container [formGroup]="formGroup">
+    <div class="flex flex-row justify-content-between">
+      <h2>{{index + 1}}問目</h2>
+      <div class="flex flex-row gap-2">
+        <p-selectButton pRipple [options]="[{label: '読み', value: 'yomi'}, {label: '書き', value: 'kaki'}]"
+          formControlName="questionType"></p-selectButton>
+        <p-button pRipple type="button" icon="pi pi-trash" [disabled]="isTrashDisabled"
+          styleClass="p-button-secondary p-button-outlined" (click)="remove.emit(index)"></p-button>
+
+      </div>
+    </div>
+    <div class="flex flex-column">
+      <div class="flex flex-column">
+        <label for="fullText">問題文</label>
+        <input id="fullText" type="text" placeholder="漢字テスト" pInputText formControlName="fullText">
+      </div>
+      <div class="flex flex-row gap-2">
+        <div class="flex flex-column">
+          <label for="targetKanji">問題の漢字</label>
+          <p-autoComplete id="targetKanji" type="text" placeholder="漢字" [suggestions]="suggestionTargetKanji"
+            [lazy]="true" [completeOnFocus]="true" formControlName="targetKanji"></p-autoComplete>
+        </div>
+        <div class="flex flex-column">
+          <label for="yomigana">よみがな</label>
+          <input id="yomigana" type="text" placeholder="かんじ" pInputText formControlName="yomigana">
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-column">
+      <small class="text-red-500" [hidden]="formGroup.controls.fullText.valid">問題文が長すぎます。表示が崩れる可能性があります</small>
+      <small class="text-red-500" [hidden]="formGroup.controls.targetKanji.valid">「問題の漢字」は「問題文」に含まれている必要があります</small>
+    </div>
+  </ng-container>
+</p-card>
