@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { DialogModule } from "primeng/dialog";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ModalComponent } from "../../shared/modal/modal.component";
 
 @Component({
 	selector: "app-update-history-modal",
 	standalone: true,
-	imports: [CommonModule, DialogModule],
+	imports: [CommonModule, ModalComponent],
 	templateUrl: "./update-history-modal.component.html",
 	styleUrls: ["./update-history-modal.component.scss"],
 })

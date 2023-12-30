@@ -1,5 +1,6 @@
-<p-dialog header="このサイトについて" [visible]="visible" (visibleChange)="visibleChange.emit($event)" [modal]="true"
-  [draggable]="false" [dismissableMask]="true" [resizable]="false">
+<!--<p-dialog header="このサイトについて" [visible]="visible" (visibleChange)="visibleChange.emit($event)" [modal]="true"
+  [draggable]="false" [dismissableMask]="true" [resizable]="false" [breakpoints]="{ '960px': '75vw' }">-->
+<app-modal header="このサイトについて" [visible]="visible" (visibleChange)="visibleChange.emit($event)">
   <ul>
     <li>オリジナルの漢字テストが作成可能</li>
     <li>最大20問まで作成可能</li>
@@ -11,4 +12,5 @@
       <li>詳しくは利用規約をご覧ください</li>
     </ul>
   </ul>
-</p-dialog>
+</app-modal>
+<!--</p-dialog>-->

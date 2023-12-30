@@ -1,0 +1,5 @@
+<label class="toggle-button inline-block font-bold py-2 px-4 rounded-md cursor-pointer select-none"
+  [ngClass]="{'bg-blue-500 hover:bg-blue-700 text-white': value === true, 'bg-white hover:bg-gray-100 text-gray-600': value === false}">
+  {{value?onLabel:offLabel}}
+  <input type="checkbox" [value]="value" (change)="toggle($event)" class="absolute opacity-0 h-0 w-0">
+</label>

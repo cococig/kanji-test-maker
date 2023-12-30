@@ -1,13 +1,20 @@
-<p-toast position="top-center"></p-toast>
-<div class="flex flex-column min-h-screen">
-  <p-image src="/assets/hero.webp" alt="トップページの紹介画像" width="100%" height="auto"></p-image>
+<app-toast></app-toast>
+<div class="flex flex-col min-h-screen">
+  <img src="/assets/hero.webp" alt="トップページの紹介画像" width="100%" height="auto">
   <app-header></app-header>
-  <div class="grid m-3">
-    <app-form class="col-6"></app-form>
-    <p-divider layout="vertical" class="col-fixed"></p-divider>
-    <div class="col-5">
-      <app-canvas class="sticky" [style]="{top: '25%'}"></app-canvas>
+  <ng-container *ngIf="isSmartPhone; else PC">
+    <div class="flex flex-col">
+      <app-form></app-form>
+      <app-canvas class="sticky"></app-canvas>
     </div>
-  </div>
+  </ng-container>
+  <ng-template #PC>
+    <div class="flex flex-auto gap-3">
+      <app-form class="basis-1/2"></app-form>
+      <div class="basis-1/2 pr-3 pb-3">
+        <app-canvas class="sticky top-32"></app-canvas>
+      </div>
+    </div>
+  </ng-template>
   <app-footer></app-footer>
 </div>

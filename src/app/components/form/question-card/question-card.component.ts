@@ -1,13 +1,10 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CardModule } from "primeng/card";
-import { SelectButtonModule } from "primeng/selectbutton";
-import { ButtonModule } from "primeng/button";
-import { InputTextModule } from "primeng/inputtext";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { AutoCompleteComponent } from "../../shared/auto-complete/auto-complete.component";
+import { ButtonComponent } from "../../shared/button/button.component";
+import { SelectButtonComponent } from "../../shared/select-button/select-button.component";
 import { questionFormGroup } from "../shared/types/form-types";
-import { RippleModule } from "primeng/ripple";
-import { AutoCompleteModule } from "primeng/autocomplete";
 
 const KANJI_REGEX = /[\u4e00-\u9faf]+/g;
 
@@ -17,12 +14,9 @@ const KANJI_REGEX = /[\u4e00-\u9faf]+/g;
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,
-		RippleModule,
-		CardModule,
-		SelectButtonModule,
-		ButtonModule,
-		InputTextModule,
-		AutoCompleteModule,
+		ButtonComponent,
+		SelectButtonComponent,
+		AutoCompleteComponent,
 	],
 	templateUrl: "./question-card.component.html",
 	styleUrls: ["./question-card.component.scss"],

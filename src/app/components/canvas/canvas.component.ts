@@ -1,3 +1,4 @@
+import { CommonModule, DOCUMENT } from "@angular/common";
 import {
 	AfterViewInit,
 	Component,
@@ -6,29 +7,26 @@ import {
 	ViewChild,
 	inject,
 } from "@angular/core";
-import { CommonModule, DOCUMENT } from "@angular/common";
-import { QuestionDataService } from "src/app/services/question-data.service";
-import { TabViewModule } from "primeng/tabview";
-import { Subscription } from "rxjs";
-import { ButtonModule } from "primeng/button";
-import { ToggleButtonModule } from "primeng/togglebutton";
-import { RippleModule } from "primeng/ripple";
 import { FormsModule } from "@angular/forms";
-import { ContextMenuModule } from "primeng/contextmenu";
-import { MenuItem } from "primeng/api";
+import { Subscription } from "rxjs";
+import { QuestionDataService } from "src/app/services/question-data.service";
+import { ScreenSizeService } from "src/app/services/screen-size.service";
 import { getCurrentDateTimeString } from "src/app/shared/common";
+import { ButtonComponent } from "../shared/button/button.component";
+import { ContextMenuComponent } from "../shared/context-menu/context-menu.component";
+import { MenuButtonComponent } from "../shared/menu-button/menu-button.component";
+import { ToggleButtonComponent } from "../shared/toggle-button/toggle-button.component";
 
 @Component({
 	selector: "app-canvas",
 	standalone: true,
 	imports: [
 		CommonModule,
-		ContextMenuModule,
-		ButtonModule,
 		FormsModule,
-		RippleModule,
-		ToggleButtonModule,
-		TabViewModule,
+		ButtonComponent,
+		ToggleButtonComponent,
+		MenuButtonComponent,
+		ContextMenuComponent,
 	],
 	templateUrl: "./canvas.component.html",
 	styleUrls: ["./canvas.component.scss"],
@@ -40,6 +38,8 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
 	@ViewChild("answerCanvas")
 	private answerCanvas!: ElementRef<HTMLCanvasElement>;
 	private document: Document = inject(DOCUMENT);
+	private questionDataService = inject(QuestionDataService);
+	private screenSizeService = inject(ScreenSizeService);
 	private subscription: Subscription | undefined;
 	private imageGeneratorWorker = new Worker(
 		new URL("../../workers/image-generator.worker", import.meta.url),
@@ -67,7 +67,34 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
 		},
 	];
 
-	constructor(private questionDataService: QuestionDataService) {}
+	downloadMenu: MenuItem[] = [
+		{
+			label: "問題用紙",
+			icon: "pi pi-download",
+			command: () => {
+				this.downloadQuestionImage();
+			},
+		},
+		{
+			label: "解答用紙",
+			icon: "pi pi-download",
+			command: () => {
+				this.downloadAnswerImage();
+			},
+		},
+	];
+
+	isSmartPhone = false;
+	private isSmartPhoneSubscription: Subscription;
+
+	constructor() {
+		this.isSmartPhoneSubscription =
+			this.screenSizeService.isSmartPhoneObservable$.subscribe(
+				(isSmartPhone) => {
+					this.isSmartPhone = isSmartPhone;
+				},
+			);
+	}
 
 	ngAfterViewInit(): void {
 		const ctx = this.bgCanvas.nativeElement.getContext("2d", { alpha: false });
@@ -98,6 +125,7 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
 	ngOnDestroy(): void {
 		this.imageGeneratorWorker.terminate();
 		this.subscription?.unsubscribe();
+		this.isSmartPhoneSubscription.unsubscribe();
 	}
 
 	private concatCanvas(

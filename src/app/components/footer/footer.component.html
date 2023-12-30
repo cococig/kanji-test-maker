@@ -1,12 +1,13 @@
-<footer class="text-white-alpha-900" [style]="{background:'#4b6251'}">
-  <div class="flex justify-content-center align-items-center py-3 gap-4">
-    <p-button (click)="showPrivacyPolicyModal()" label="プライバシーポリシー"
-      styleClass="p-button-link text-white-alpha-900"></p-button>
-    <p-button (click)="showTermModal()" label="利用規約" styleClass="p-button-link text-white-alpha-900"></p-button>
-    <a class="text-white-alpha-900 font-bold" href="https://twitter.com/cococig">Contact</a>
-    <a class="text-white-alpha-900 font-bold" href="https://github.com/cococig">GitHub</a>
+<footer class="text-white/90" [style]="{background:'#4b6251'}">
+  <div class="flex justify-center items-center py-3 gap-4">
+    <a class="text-white/90 font-bold cursor-pointer" (click)="showPrivacyPolicyModal()">プライバシーポリシー</a>
+    <a class="text-white/90 font-bold cursor-pointer" (click)="showTermModal()">利用規約</a>
+    <a class="text-white/90 font-bold" href="https://twitter.com/cococig" target="_blank"
+      rel="noopener noreferrer">Contact</a>
+    <a class="text-white/90 font-bold" href="https://github.com/cococig" target="_blank"
+      rel="noopener noreferrer">GitHub</a>
   </div>
-  <div class="flex justify-content-center py-3">
+  <div class="flex justify-center py-3">
     <p>© 2022-{{nowYear}} Cococig. All rights reserved</p>
   </div>
 </footer>

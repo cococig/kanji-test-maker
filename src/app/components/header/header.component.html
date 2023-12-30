@@ -1,14 +1,19 @@
-<nav class="flex flex-wrap justify-content-between p-4 sticky top-0 text-white-alpha-900"
-  [style]="{backgroundColor:'#4b6251'}">
-  <div>
-    <h1 class="text-4xl" [style]="{'letter-spacing': '-0.05em'}">漢字テストメーカー</h1>
-  </div>
-  <div>
-    <p-button (click)="showAboutModal()" label="このサイトについて" styleClass="p-button-link text-white-alpha-900"></p-button>
-    <p-button (click)="showUsageModal()" label="つかいかた" styleClass="p-button-link text-white-alpha-900"></p-button>
-    <p-button (click)="showUpdateHistoryModal()" label="更新履歴"
-      styleClass="p-button-link text-white-alpha-900"></p-button>
-  </div>
+<nav class="flex flex-wrap justify-between items-center p-4" [style]="{backgroundColor:'#4b6251'}">
+  <ng-container *ngIf="isSmartPhone; else PC">
+    <h1 class="text-4xl text-white/90" [style]="{'letter-spacing': '-0.05em'}">漢字テストメーカー</h1>
+    <!--<app-button label="テスト" (onClick)="menu.toggle($event)"></app-button>-->
+    <!--<p-menu #menu [model]="smartPhoneMenuItems" [popup]="true" appendTo="body"></p-menu>-->
+  </ng-container>
+  <ng-template #PC>
+    <div>
+      <h1 class="text-4xl text-white/90" [style]="{'letter-spacing': '-0.05em'}">漢字テストメーカー</h1>
+    </div>
+    <div class="flex justify-center items-center gap-4">
+      <a class="text-white/90 font-bold cursor-pointer hover:underline" (click)="showAboutModal()">このサイトについて</a>
+      <a class="text-white/90 font-bold cursor-pointer hover:underline" (click)="showUsageModal()">つかいかた</a>
+      <a class="text-white/90 font-bold cursor-pointer hover:underline" (click)="showUpdateHistoryModal()">更新履歴</a>
+    </div>
+  </ng-template>
 </nav>
 
 <app-about-modal [(visible)]="visibleAboutModal"></app-about-modal>

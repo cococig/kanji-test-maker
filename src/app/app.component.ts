@@ -1,37 +1,43 @@
-import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { Component, OnDestroy } from "@angular/core";
 
-import { ImageModule } from "primeng/image";
+import { Subscription } from "rxjs";
 import { HeaderComponent } from "src/app/components/header/header.component";
-import { FormComponent } from "./components/form/form.component";
-import { PrimeNGConfig } from "primeng/api";
-import { FooterComponent } from "./components/footer/footer.component";
-import { DividerModule } from "primeng/divider";
-import { ToastModule } from "primeng/toast";
 import { CanvasComponent } from "./components/canvas/canvas.component";
+import { FooterComponent } from "./components/footer/footer.component";
+import { FormComponent } from "./components/form/form.component";
+import { ToastComponent } from "./components/shared/toast/toast.component";
+import { ScreenSizeService } from "./services/screen-size.service";
 
 @Component({
 	selector: "app-root",
 	standalone: true,
 	imports: [
 		CommonModule,
-		ImageModule,
 		HeaderComponent,
 		FormComponent,
 		CanvasComponent,
 		FooterComponent,
-		DividerModule,
-		ToastModule,
+		ToastComponent,
 	],
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.scss"],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnDestroy {
 	title = "kanji-test-generator";
+	isSmartPhone = false;
+	private isSmartPhoneSubscription: Subscription;
 
-	constructor(private primengConfig: PrimeNGConfig) {}
+	constructor(private screenSizeService: ScreenSizeService) {
+		this.isSmartPhoneSubscription =
+			this.screenSizeService.isSmartPhoneObservable$.subscribe(
+				(isSmartPhone) => {
+					this.isSmartPhone = isSmartPhone;
+				},
+			);
+	}
 
-	ngOnInit() {
-		this.primengConfig.ripple = true;
+	ngOnDestroy(): void {
+		this.isSmartPhoneSubscription.unsubscribe();
 	}
 }

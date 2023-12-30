@@ -1,7 +1,8 @@
-<p-dialog header="プライバシーポリシー" [visible]="visible" (visibleChange)="visibleChange.emit($event)" [modal]="true"
+<!--<p-dialog header="プライバシーポリシー" [visible]="visible" (visibleChange)="visibleChange.emit($event)" [modal]="true"
   [draggable]="false" [dismissableMask]="true" [resizable]="false" [breakpoints]="{ '960px': '75vw' }"
-  [style]="{ width: '50vw' }">
-  <div class="flex flex-column gap-3">
+  [style]="{ width: '50vw' }">-->
+<app-modal header="プライバシーポリシー" [visible]="visible" (visibleChange)="visibleChange.emit($event)">
+  <div class="flex flex-col gap-3">
     <div>
       <h2>基本方針</h2>
       <p>当サイトは、個人情報の重要性を認識し、個人情報を保護することが社会的責務であると考え、個人情報に関する法令を遵守し、当サイトで取扱う個人情報の取得、利用、管理を適正に行います。</p>
@@ -84,4 +85,5 @@
       <p>本プライバシーポリシーの変更は、当サイトに掲載された時点で有効になるものとします。</p>
     </div>
   </div>
-</p-dialog>
+</app-modal>
+<!--</p-dialog>-->

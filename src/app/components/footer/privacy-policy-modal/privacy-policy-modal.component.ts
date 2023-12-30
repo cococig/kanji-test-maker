@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { DialogModule } from "primeng/dialog";
+import { ModalComponent } from "../../shared/modal/modal.component";
 
 @Component({
 	selector: "app-privacy-policy-modal",
 	standalone: true,
-	imports: [CommonModule, DialogModule],
+	imports: [CommonModule, ModalComponent],
 	templateUrl: "./privacy-policy-modal.component.html",
 	styleUrls: ["./privacy-policy-modal.component.scss"],
 })

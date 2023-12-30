@@ -1,34 +1,30 @@
 import { CommonModule, DOCUMENT } from "@angular/common";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import {
 	AbstractControl,
 	FormBuilder,
 	ReactiveFormsModule,
 } from "@angular/forms";
-import { MenuItem, MessageService } from "primeng/api";
-import { ButtonModule } from "primeng/button";
-import { MenuModule } from "primeng/menu";
-import { RippleModule } from "primeng/ripple";
-import { SplitButtonModule } from "primeng/splitbutton";
-import { filter } from "rxjs";
+import { Subscription, filter } from "rxjs";
+import { MessageService } from "src/app/services/message.service";
 import { QuestionDataService } from "src/app/services/question-data.service";
+import { ScreenSizeService } from "src/app/services/screen-size.service";
 import { getCurrentDateTimeString } from "src/app/shared/common";
 import {
 	AllQuestionData,
 	isAllQuestionData,
 } from "src/app/shared/types/question-data";
+import { MenuButtonComponent } from "../shared/menu-button/menu-button.component";
+import { SplitButtonComponent } from "../shared/split-button/split-button.component";
 import { QuestionCardComponent } from "./question-card/question-card.component";
 import { questionsFormArray } from "./shared/types/form-types";
 
 function isIncludeTargetKanjiInFullText(questionGroup: AbstractControl) {
 	const fullText: string | null = questionGroup.get("fullText")?.value;
 	const targetKanji: string | null = questionGroup.get("targetKanji")?.value;
-	if (targetKanji == null || !fullText?.includes(targetKanji)) {
-		questionGroup.get("targetKanji")?.setErrors({
-			notIncludeTargetKanjiInFullText: true,
-		});
-	}
-	return null;
+	return targetKanji == null || !fullText?.includes(targetKanji)
+		? { notIncludeTargetKanjiInFullText: true }
+		: null;
 }
 
 function maxLengthFullText(questionGroup: AbstractControl) {
@@ -47,18 +43,14 @@ function maxLengthFullText(questionGroup: AbstractControl) {
 			(questionType === "yomi" && fullText.length > 29) ||
 			(questionType === "kaki" && fullText.length > 29 - targetKanji.length * 2)
 		) {
-			questionGroup.get("fullText")?.setErrors({
-				maxLengthFullText: true,
-			});
+			return { maxLengthFullText: true };
 		}
 	} else if (questionsLength > 10) {
 		if (
 			(questionType === "yomi" && fullText.length > 13) ||
 			(questionType === "kaki" && fullText.length > 13 - targetKanji.length * 2)
 		) {
-			questionGroup.get("fullText")?.setErrors({
-				maxLengthFullText: true,
-			});
+			return { maxLengthFullText: true };
 		}
 	}
 	return null;
@@ -98,15 +90,18 @@ function isQuestionDataList(data: any): data is QuestionData {
 		CommonModule,
 		QuestionCardComponent,
 		ReactiveFormsModule,
-		ButtonModule,
-		SplitButtonModule,
-		RippleModule,
-		MenuModule,
+		MenuButtonComponent,
+		SplitButtonComponent,
 	],
 	templateUrl: "./form.component.html",
 	styleUrls: ["./form.component.scss"],
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
+	private fb = inject(FormBuilder);
+	private messageService = inject(MessageService);
+	private questionDataService = inject(QuestionDataService);
+	private screenSizeService = inject(ScreenSizeService);
+
 	questionsForm = this.fb.group({
 		questions: this.fb.array([
 			this.fb.group(
@@ -149,22 +144,28 @@ export class FormComponent implements OnInit {
 		{
 			label: "エクスポート",
 			icon: "pi pi-file-export",
-			command: this.exportQuestionData,
+			command: () => this.exportQuestionData(),
 		},
 		{
 			label: "インポート",
 			icon: "pi pi-file-import",
-			command: this.exportQuestionData,
+			command: () => this.importQuestionData(),
 		},
 	];
 
 	private document: Document = inject(DOCUMENT);
 
-	constructor(
-		private fb: FormBuilder,
-		private messageService: MessageService,
-		private questionDataService: QuestionDataService,
-	) {}
+	isSmartPhone = false;
+	private isSmartPhoneSubscription: Subscription;
+
+	constructor() {
+		this.isSmartPhoneSubscription =
+			this.screenSizeService.isSmartPhoneObservable$.subscribe(
+				(isSmartPhone) => {
+					this.isSmartPhone = isSmartPhone;
+				},
+			);
+	}
 
 	ngOnInit(): void {
 		this.questionsForm.valueChanges
@@ -173,6 +174,10 @@ export class FormComponent implements OnInit {
 				console.debug("QuestionDataServiceにデータを送信します");
 				this.questionDataService.sendQuestionData(data as AllQuestionData);
 			});
+	}
+
+	ngOnDestroy(): void {
+		this.isSmartPhoneSubscription.unsubscribe();
 	}
 
 	get questions() {
@@ -264,11 +269,10 @@ export class FormComponent implements OnInit {
 				if (!isQuestionDataList(parsedFile)) {
 					console.debug("問題データが不正です");
 					console.debug(parsedFile);
-					this.messageService.add({
-						severity: "error",
-						summary: "エラー",
-						detail: "問題データの形式が不正です",
-					});
+					this.messageService.showMessage(
+						"問題データの形式が不正です",
+						"error",
+					);
 					return;
 				}
 				console.debug("正しい問題データであることを確認しました");
@@ -288,10 +292,10 @@ export class FormComponent implements OnInit {
 				}
 				// データのフォームへの適用
 				this.questionsForm.setValue(parsedFile);
-				this.messageService.add({
-					severity: "success",
-					detail: "問題データの読み込みに成功しました",
-				});
+				this.messageService.showMessage(
+					"問題データの読み込みに成功しました",
+					"success",
+				);
 			};
 			console.debug("ファイルの読み込みを開始します");
 			reader.readAsText(file, "UTF-8");

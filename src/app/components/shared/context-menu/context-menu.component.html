@@ -1,0 +1,12 @@
+<div (contextmenu)="showContextMenu($event)" class="w-full h-auto">
+  <ng-content></ng-content>
+  <div class="context-menu" *ngIf="visible" (clickOutside)="onClickInsideOrOutside($event)"
+    [ngStyle]="{top: posY + 'px', left: posX + 'px'}">
+    <ul>
+      <li *ngFor="let item of model" (click)="menuItemClicked($event,item.command)">
+        <i *ngIf="item.icon" [class]="item.icon"></i>
+        <div>{{item.label}}</div>
+      </li>
+    </ul>
+  </div>
+</div>

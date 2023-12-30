@@ -13,3 +13,12 @@ export function getCurrentDateTimeString(): string {
 	const seconds = String(now.getSeconds()).padStart(2, "0");
 	return `${year}${month}${day}${hours}${minutes}${seconds}`;
 }
+
+/**
+ * HTMLのid属性で使うためのランダムなUUIDを生成する関数。
+ * id属性の先頭には数字が使えないため、prefixとして`id-`を付与する
+ * @returns HTMLのid属性用のランダムな値
+ */
+export function getRandomHTMLId(): string {
+	return `id-${crypto.randomUUID()}`;
+}

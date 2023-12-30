@@ -9,17 +9,16 @@ export type SingleQuestionData = {
 	questionType: "yomi" | "kaki";
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export function isAllQuestionData(data: any): data is AllQuestionData {
-	if (typeof data !== "object" || data === null) {
+export function isAllQuestionData(data: unknown): data is AllQuestionData {
+	if (typeof data !== "object" || data == null) {
 		return false;
 	}
 
-	if (!Array.isArray(data.questions)) {
+	if (!Array.isArray((data as AllQuestionData).questions)) {
 		return false;
 	}
 
-	for (const question of data.questions) {
+	for (const question of (data as AllQuestionData).questions) {
 		if (!isSingleQuestionData(question)) {
 			return false;
 		}
@@ -28,17 +27,20 @@ export function isAllQuestionData(data: any): data is AllQuestionData {
 	return true;
 }
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export function isSingleQuestionData(data: any): data is SingleQuestionData {
-	if (typeof data !== "object" || data === null) {
+export function isSingleQuestionData(
+	data: unknown,
+): data is SingleQuestionData {
+	if (typeof data !== "object" || data == null) {
 		return false;
 	}
 
+	const tmpData = data as SingleQuestionData;
+
 	if (
-		typeof data.fullText !== "string" ||
-		typeof data.targetKanji !== "string" ||
-		typeof data.yomigana !== "string" ||
-		(data.questionType !== "yomi" && data.questionType !== "kaki")
+		typeof tmpData.fullText !== "string" ||
+		typeof tmpData.targetKanji !== "string" ||
+		typeof tmpData.yomigana !== "string" ||
+		(tmpData.questionType !== "yomi" && tmpData.questionType !== "kaki")
 	) {
 		return false;
 	}
