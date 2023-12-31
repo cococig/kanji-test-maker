@@ -1,20 +1,18 @@
 <nav class="flex flex-wrap justify-between items-center p-4" [style]="{backgroundColor:'#4b6251'}">
-  <ng-container *ngIf="isSmartPhone; else PC">
-    <h1 class="text-4xl font-bold text-white/90" [style]="{'letter-spacing': '-0.05em'}">漢字テストメーカー</h1>
-    <!--<app-button label="テスト" (onClick)="menu.toggle($event)"></app-button>-->
-    <!--<p-menu #menu [model]="smartPhoneMenuItems" [popup]="true" appendTo="body"></p-menu>-->
-  </ng-container>
-  <ng-template #PC>
-    <div>
-      <h1 class="text-4xl mt-1 font-bold text-white/90" [style]="{'letter-spacing': '-0.05em'}">
-        漢字テストメーカー</h1>
-    </div>
-    <div class="flex justify-center items-center gap-4">
+  <div>
+    <h1 class="text-4xl mt-1 font-bold text-white/90" [style]="{'letter-spacing': '-0.05em'}">
+      漢字テストメーカー</h1>
+  </div>
+  <div>
+    <div class="hidden md:flex justify-center items-center gap-4">
       <a class="text-white/90 font-bold cursor-pointer hover:underline" (click)="showAboutModal()">このサイトについて</a>
       <a class="text-white/90 font-bold cursor-pointer hover:underline" (click)="showUsageModal()">つかいかた</a>
       <a class="text-white/90 font-bold cursor-pointer hover:underline" (click)="showUpdateHistoryModal()">更新履歴</a>
     </div>
-  </ng-template>
+    <div class="md:hidden">
+      <app-menu-button icon="pi pi-bars" [model]="smartPhoneMenuItems"></app-menu-button>
+    </div>
+  </div>
 </nav>
 
 <app-about-modal [(visible)]="visibleAboutModal"></app-about-modal>

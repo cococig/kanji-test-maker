@@ -3,7 +3,7 @@
     (focus)="onFocus($event)" (blur)="onFocus($event)" [(ngModel)]="value"
     class="border border-gray-300 focus:outline-blue-500 rounded-md p-2 w-full"
     [ngClass]="{'border-red-500 focus:outline-red-500':invalid}">
-  <ul class="absolute scale-y-0 z-10 border rounded-md bg-white min-w-full transition-transform origin-top"
+  <ul class="absolute z-50 scale-y-0 border rounded-md bg-white min-w-full transition-transform origin-top"
     [ngClass]="{'scale-y-100':suggestions.length !== 0 && isFocus}">
     <li *ngFor="let item of suggestions" class="w-full">
       <button type="button"

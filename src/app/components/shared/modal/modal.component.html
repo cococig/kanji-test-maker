@@ -1,5 +1,5 @@
 <dialog #dialog
-  class="fixed inset-0 m-auto rounded-md w-8/12 h-max transition-transform duration-300 backdrop:bg-gray-500/50"
+  class="fixed inset-0 m-auto rounded-md w-full md:w-8/12 h-max transition-transform duration-300 backdrop:bg-gray-500/50"
   style="z-index: 1100;" [ngClass]="{'scale-0':!visible, 'scale-100':visible}" (click)="onDialogClick($event)">
   <div [id]="dialogContainerId" class="flex flex-col h-max">
     <div class="sticky top-0 bg-white flex items-center justify-between p-6">

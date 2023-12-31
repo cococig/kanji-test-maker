@@ -1,14 +1,13 @@
 import { CommonModule, DOCUMENT } from "@angular/common";
-import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import {
 	AbstractControl,
 	FormBuilder,
 	ReactiveFormsModule,
 } from "@angular/forms";
-import { Subscription, filter } from "rxjs";
+import { filter } from "rxjs";
 import { MessageService } from "src/app/services/message.service";
 import { QuestionDataService } from "src/app/services/question-data.service";
-import { ScreenSizeService } from "src/app/services/screen-size.service";
 import { getCurrentDateTimeString } from "src/app/shared/common";
 import {
 	AllQuestionData,
@@ -96,11 +95,10 @@ function isQuestionDataList(data: any): data is QuestionData {
 	templateUrl: "./form.component.html",
 	styleUrls: ["./form.component.scss"],
 })
-export class FormComponent implements OnInit, OnDestroy {
+export class FormComponent implements OnInit {
 	private fb = inject(FormBuilder);
 	private messageService = inject(MessageService);
 	private questionDataService = inject(QuestionDataService);
-	private screenSizeService = inject(ScreenSizeService);
 
 	questionsForm = this.fb.group({
 		questions: this.fb.array([
@@ -153,19 +151,28 @@ export class FormComponent implements OnInit, OnDestroy {
 		},
 	];
 
+	smartPhoneMenuItems: MenuItem[] = [
+		{
+			label: "すべて読み問題に変更",
+			command: () => this.changeAllQuestionType("yomi"),
+		},
+		{
+			label: "すべて書き問題に変更",
+			command: () => this.changeAllQuestionType("kaki"),
+		},
+		{
+			label: "エクスポート",
+			icon: "pi pi-file-export",
+			command: () => this.exportQuestionData(),
+		},
+		{
+			label: "インポート",
+			icon: "pi pi-file-import",
+			command: () => this.importQuestionData(),
+		},
+	];
+
 	private document: Document = inject(DOCUMENT);
-
-	isSmartPhone = false;
-	private isSmartPhoneSubscription: Subscription;
-
-	constructor() {
-		this.isSmartPhoneSubscription =
-			this.screenSizeService.isSmartPhoneObservable$.subscribe(
-				(isSmartPhone) => {
-					this.isSmartPhone = isSmartPhone;
-				},
-			);
-	}
 
 	ngOnInit(): void {
 		this.questionsForm.valueChanges
@@ -174,10 +181,6 @@ export class FormComponent implements OnInit, OnDestroy {
 				console.debug("QuestionDataServiceにデータを送信します");
 				this.questionDataService.sendQuestionData(data as AllQuestionData);
 			});
-	}
-
-	ngOnDestroy(): void {
-		this.isSmartPhoneSubscription.unsubscribe();
 	}
 
 	get questions() {

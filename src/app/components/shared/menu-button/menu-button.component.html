@@ -4,10 +4,11 @@
   <label [htmlFor]="inputId"
     class="inline-flex items-center gap-2 justify-center w-full rounded-md bg-blue-500 hover:bg-blue-700 py-2 px-4 font-bold text-white cursor-pointer select-none">
     <i *ngIf="icon" [class]="icon"></i>
-    <div>{{label}}</div>
+    <div *ngIf="label">{{label}}</div>
   </label>
-  <ul [ngClass]="{'scale-y-0':isMenuClose, 'scale-y-100':!isMenuClose}"
-    class="absolute border z-10 rounded-md shadow-md bg-white min-w-full transition-transform origin-top">
+  <ul #menuElement
+    [ngClass]="{'scale-y-100':isMenuOpen, 'origin-bottom bottom-10':isMenuOverflowY, 'right-0':isMenuOverflowX}"
+    class="absolute z-50 scale-y-0 border rounded-md shadow-md bg-white w-max min-w-full transition-transform origin-top">
     <li *ngFor="let item of model" class="w-full">
       <button type="button" [disabled]="item?.disabled" (click)="menuItemClicked($event,item.command)"
         class="inline-flex items-center gap-2 px-4 py-2 w-full text-sm text-left text-gray-700 hover:bg-gray-100">

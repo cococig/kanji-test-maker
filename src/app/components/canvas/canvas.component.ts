@@ -10,7 +10,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { QuestionDataService } from "src/app/services/question-data.service";
-import { ScreenSizeService } from "src/app/services/screen-size.service";
 import { getCurrentDateTimeString } from "src/app/shared/common";
 import { ButtonComponent } from "../shared/button/button.component";
 import { ContextMenuComponent } from "../shared/context-menu/context-menu.component";
@@ -39,7 +38,6 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
 	private answerCanvas!: ElementRef<HTMLCanvasElement>;
 	private document: Document = inject(DOCUMENT);
 	private questionDataService = inject(QuestionDataService);
-	private screenSizeService = inject(ScreenSizeService);
 	private subscription: Subscription | undefined;
 	private imageGeneratorWorker = new Worker(
 		new URL("../../workers/image-generator.worker", import.meta.url),
@@ -84,18 +82,6 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
 		},
 	];
 
-	isSmartPhone = false;
-	private isSmartPhoneSubscription: Subscription;
-
-	constructor() {
-		this.isSmartPhoneSubscription =
-			this.screenSizeService.isSmartPhoneObservable$.subscribe(
-				(isSmartPhone) => {
-					this.isSmartPhone = isSmartPhone;
-				},
-			);
-	}
-
 	ngAfterViewInit(): void {
 		const ctx = this.bgCanvas.nativeElement.getContext("2d", { alpha: false });
 		if (!ctx) throw new Error("CanvasのContext取得に失敗しました");
@@ -125,7 +111,6 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
 	ngOnDestroy(): void {
 		this.imageGeneratorWorker.terminate();
 		this.subscription?.unsubscribe();
-		this.isSmartPhoneSubscription.unsubscribe();
 	}
 
 	private concatCanvas(

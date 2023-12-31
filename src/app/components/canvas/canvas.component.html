@@ -1,37 +1,16 @@
-<ng-container *ngIf="isSmartPhone; else PC">
-  <div #layeredCanvas class="layeredCanvas m-2">
+<div class="hidden md:flex my-3 w-full gap-3 justify-start">
+  <app-toggle-button onLabel="解答を表示" offLabel="解答を非表示" [(value)]="isHiddenAnswerCanvas"></app-toggle-button>
+  <app-menu-button label="ダウンロード" icon="pi pi-bars" [model]="downloadMenu"></app-menu-button>
+</div>
+<app-context-menu [model]="contextMenu">
+  <div #layeredCanvas class="layeredCanvas">
     <canvas #answerCanvas id="answerCanvas" width="1200" height="900"
       [ngStyle]="{visibility:isHiddenAnswerCanvas?'hidden':'visible'}"></canvas>
     <canvas #questionCanvas id="questionCanvas" width="1200" height="900"></canvas>
     <canvas #bgCanvas id="bgCanvas" width="1200" height="900"></canvas>
   </div>
-  <div class="flex my-3 w-full justify-between">
-    <div>
-      <app-toggle-button onLabel="解答を表示" offLabel="解答を非表示" [(value)]="isHiddenAnswerCanvas"></app-toggle-button>
-      <!--<p-toggleButton onLabel="解答を表示する" offLabel="解答を非表示にする" [(ngModel)]="isHiddenAnswerCanvas"></p-toggleButton>-->
-    </div>
-    <div class="flex gap-2">
-    </div>
-  </div>
-  <!--<p-contextMenu [target]="layeredCanvas" [model]="contextMenu" appendTo="body"></p-contextMenu>-->
-</ng-container>
-
-<ng-template #PC>
-  <div class="flex my-3 w-full gap-3 justify-start">
-    <div>
-      <app-toggle-button onLabel="解答を表示" offLabel="解答を非表示" [(value)]="isHiddenAnswerCanvas"></app-toggle-button>
-    </div>
-    <div class="flex gap-2">
-      <app-menu-button label="ダウンロード" icon="pi pi-bars" [model]="downloadMenu"></app-menu-button>
-    </div>
-  </div>
-  <app-context-menu [model]="contextMenu">
-    <div #layeredCanvas class="layeredCanvas">
-      <canvas #answerCanvas id="answerCanvas" width="1200" height="900"
-        [ngStyle]="{visibility:isHiddenAnswerCanvas?'hidden':'visible'}"></canvas>
-      <canvas #questionCanvas id="questionCanvas" width="1200" height="900"></canvas>
-      <canvas #bgCanvas id="bgCanvas" width="1200" height="900"></canvas>
-    </div>
-  </app-context-menu>
-  <!--<p-contextMenu [target]="layeredCanvas" [model]="contextMenu" appendTo="body"></p-contextMenu>-->
-</ng-template>
+</app-context-menu>
+<div class="flex md:hidden pt-3 w-full gap-3 justify-end">
+  <app-toggle-button onLabel="解答を表示" offLabel="解答を非表示" [(value)]="isHiddenAnswerCanvas"></app-toggle-button>
+  <app-menu-button label="ダウンロード" icon="pi pi-bars" [model]="downloadMenu"></app-menu-button>
+</div>

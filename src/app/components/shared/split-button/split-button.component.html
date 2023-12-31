@@ -9,8 +9,8 @@
       <i class="pi pi-chevron-down transition-transform duration-300" [ngClass]="{'-rotate-180':!isMenuClose}"></i>
     </label>
   </div>
-  <ul class="bg-white min-w-full absolute border z-10 rounded-md shadow-md transition-transform origin-top"
-    [ngClass]="{'scale-y-0':isMenuClose, 'scale-y-100':!isMenuClose}">
+  <ul class="bg-white min-w-full absolute border z-50 rounded-md shadow-md scale-y-0 transition-transform origin-top"
+    [ngClass]="{'scale-y-100':!isMenuClose}">
     <li *ngFor="let item of model">
       <button type="button" [disabled]="item?.disabled" (click)="item?.command($event);toggleMenuOpen()"
         class="block px-4 py-2 w-full text-sm text-left text-gray-700 hover:bg-gray-100">{{item?.label}}</button>
