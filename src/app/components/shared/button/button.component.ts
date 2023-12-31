@@ -13,6 +13,7 @@ export class ButtonComponent implements OnInit {
 	@Input() icon = "";
 	@Input() disabled = false;
 	@Input() isOutlined = false;
+	@Input() tabIndex = 0;
 	@Output() onClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
 	isIconOnly = false;
