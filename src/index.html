@@ -46,16 +46,16 @@
   <script>
     // 参考：https://www.nanakazoku.com/memo/wp-code-lighthouse
     function lazyAnalyticsScript() {
-      var scrollFirstTime = 1;
+      let scrollFirstTime = 1;
       window.addEventListener("scroll", oneTimeFunction, false);
       window.addEventListener("mousemove", oneTimeFunction, false);
       function oneTimeFunction() {
         if (scrollFirstTime === 1) {
           scrollFirstTime = 0;
-          var adScript = document.createElement("script");
+          const adScript = document.createElement("script");
           adScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-YH6HT4KYTZ';
           document.body.appendChild(adScript);
-          var adScript2 = document.createElement("script");
+          const adScript2 = document.createElement("script");
           adScript2.innerHTML = 'window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-YH6HT4KYTZ");';
           document.body.appendChild(adScript2);
           window.removeEventListener("scroll", oneTimeFunction, false);
