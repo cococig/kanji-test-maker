@@ -49,6 +49,9 @@ export class AutoCompleteComponent implements ControlValueAccessor {
 		this.value = (event.target as HTMLInputElement | HTMLButtonElement).value;
 		this.onModelChange(this.value);
 		this.onModelTouched();
+		if (event.currentTarget instanceof HTMLButtonElement) {
+			event.currentTarget.blur();
+		}
 	}
 
 	onFocus(event: FocusEvent) {

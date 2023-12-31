@@ -8,7 +8,7 @@
     <li *ngFor="let item of suggestions" class="w-full">
       <button type="button"
         class="block px-4 py-2 w-full text-sm text-left text-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-blue-500"
-        [value]="item" (mousedown)="updateValue($event)" (keydown)="updateValue($event)" (focus)="onFocus($event)"
+        [value]="item" (mousedown)="updateValue($event)" (keydown.enter)="updateValue($event)" (focus)="onFocus($event)"
         (blur)="onFocus($event)">{{item}}</button>
     </li>
   </ul>
