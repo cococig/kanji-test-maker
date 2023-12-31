@@ -40,14 +40,14 @@ function maxLengthFullText(questionGroup: AbstractControl) {
 	if (questionsLength <= 10) {
 		if (
 			(questionType === "yomi" && fullText.length > 29) ||
-			(questionType === "kaki" && fullText.length > 29 - targetKanji.length * 2)
+			(questionType === "kaki" && fullText.length + targetKanji.length > 29)
 		) {
 			return { maxLengthFullText: true };
 		}
 	} else if (questionsLength > 10) {
 		if (
 			(questionType === "yomi" && fullText.length > 13) ||
-			(questionType === "kaki" && fullText.length > 13 - targetKanji.length * 2)
+			(questionType === "kaki" && fullText.length + targetKanji.length > 13)
 		) {
 			return { maxLengthFullText: true };
 		}
