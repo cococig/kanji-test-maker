@@ -1,5 +1,5 @@
 /// <reference lib="webworker" />
-import { filter, fromEvent, switchMap } from "rxjs";
+import { fromEvent, switchMap } from "rxjs";
 import {
 	AllQuestionData,
 	SingleQuestionData,
@@ -81,7 +81,7 @@ abstract class AbstractKanjiTestCanvas {
 	constructor(charHeight: CharHeight, allQuestionData: AllQuestionData) {
 		this.charHeight = charHeight;
 		this.allQuestionData = allQuestionData;
-		this.maxHeight = allQuestionData.questions.length < 10 ? 800 : 360;
+		this.maxHeight = allQuestionData.questions.length <= 10 ? 800 : 360;
 		// Canvasの生成
 		const canvas = new OffscreenCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
 		const ctx = canvas.getContext("2d");
@@ -268,10 +268,12 @@ class QuestionCanvas extends AbstractKanjiTestCanvas {
 	 */
 	private drawWrightingQuestionBox(
 		questionData: SingleQuestionData,
-		charHeight: number,
+		fontData: FontData,
 		x: number,
 		y: number,
 	) {
+		this.setFontData(fontData);
+		const charHeight = this.charHeight.get(fontData);
 		const questionLength = questionData.targetKanji.length;
 		this.ctx.fillStyle = "white";
 		this.ctx.strokeStyle = "black";
@@ -348,7 +350,7 @@ class QuestionCanvas extends AbstractKanjiTestCanvas {
 			if (start === 0) {
 				const endHeight = this.drawWrightingQuestionBox(
 					questionData,
-					defaultCharHeight,
+					fontData,
 					x,
 					y,
 				);
@@ -370,7 +372,7 @@ class QuestionCanvas extends AbstractKanjiTestCanvas {
 				);
 				endHeight = this.drawWrightingQuestionBox(
 					questionData,
-					defaultCharHeight,
+					fontData,
 					x,
 					endHeight,
 				);
@@ -491,6 +493,14 @@ class AnswerCanvas extends AbstractKanjiTestCanvas {
 		);
 	}
 
+	/**
+	 * 書き問題の解答を1問描画するメソッド。drawSingleAnswerから呼び出される。
+	 * @param questionData
+	 * @param questionStartPoint
+	 * @param defaultCharHeight
+	 * @param x
+	 * @param y
+	 */
 	private drawSingleWritingAnswer(
 		questionData: SingleQuestionData,
 		questionStartPoint: number,
@@ -503,7 +513,7 @@ class AnswerCanvas extends AbstractKanjiTestCanvas {
 			// 解答フォントデータは問題と同じ
 			const questionFontData: FontData = {
 				fontSize: this.modifyFontSize(
-					questionData.fullText.length,
+					questionData.fullText.length - questionData.targetKanji.length,
 					this.maxHeight -
 						defaultCharHeight * questionData.targetKanji.length * 2,
 				),
