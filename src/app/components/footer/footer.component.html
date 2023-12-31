@@ -1,0 +1,16 @@
+<footer class="text-white/90" [style]="{background:'#4b6251'}">
+  <div class="flex justify-center items-center py-3 gap-4">
+    <a class="text-white/90 font-bold cursor-pointer" (click)="showPrivacyPolicyModal()">プライバシーポリシー</a>
+    <a class="text-white/90 font-bold cursor-pointer" (click)="showTermModal()">利用規約</a>
+    <a class="text-white/90 font-bold" href="https://twitter.com/cococig" target="_blank"
+      rel="noopener noreferrer">Contact</a>
+    <a class="text-white/90 font-bold" href="https://github.com/cococig" target="_blank"
+      rel="noopener noreferrer">GitHub</a>
+  </div>
+  <div class="flex justify-center py-3">
+    <p>© 2022-{{nowYear}} Cococig. All rights reserved</p>
+  </div>
+</footer>
+
+<app-privacy-policy-modal [(visible)]="visiblePrivacyPolicyModal"></app-privacy-policy-modal>
+<app-term-modal [(visible)]="visibleTermModal"></app-term-modal>

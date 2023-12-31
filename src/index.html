@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <!-- Google tag (gtag.js) -->
+  <!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH6HT4KYTZ"></script>-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-YH6HT4KYTZ');
+  </script>
+  <title>漢字テストメーカー</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#b9c9c9">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="description" content="自分だけのオリジナル漢字テストが作成できる！">
+
+  <!-- Twitter Card設定 -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="漢字テストメーカー" />
+  <meta name="twitter:description" content="自分だけのオリジナル漢字テストが作成できる！" />
+  <meta name="twitter:image" content="https://kanjitestmaker.cococig.com/assets/twittercard.webp" />
+
+  <!-- OGP設定 -->
+  <meta property="og:url" content="https://kanjitestmaker.cococig.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="漢字テストメーカー" />
+  <meta property="og:description" content="自分だけのオリジナル漢字テストが作成できる！" />
+  <meta property="og:site_name" content="漢字テストメーカー" />
+  <meta property="og:image" content="https://kanjitestmaker.cococig.com/assets/ogp.webp" />
+
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="assets/manifest.json" />
+</head>
+
+<body>
+  <app-root></app-root>
+  <script>
+    // 参考：https://www.nanakazoku.com/memo/wp-code-lighthouse
+    function lazyAnalyticsScript() {
+      let scrollFirstTime = 1;
+      window.addEventListener("scroll", oneTimeFunction, false);
+      window.addEventListener("mousemove", oneTimeFunction, false);
+      function oneTimeFunction() {
+        if (scrollFirstTime === 1) {
+          scrollFirstTime = 0;
+          const adScript = document.createElement("script");
+          adScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-YH6HT4KYTZ';
+          document.body.appendChild(adScript);
+          const adScript2 = document.createElement("script");
+          adScript2.innerHTML = 'window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-YH6HT4KYTZ");';
+          document.body.appendChild(adScript2);
+          window.removeEventListener("scroll", oneTimeFunction, false);
+          window.removeEventListener("mousemove", oneTimeFunction, false);
+        }
+      }
+    }
+    lazyAnalyticsScript();
+  </script>
+</body>
+
+</html>

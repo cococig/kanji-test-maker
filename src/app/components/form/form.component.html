@@ -1,0 +1,25 @@
+<div class="flex flex-col flex-grow mx-auto items-center justify-start w-full">
+  <div class="hidden md:flex flex-row my-3 gap-3 w-full justify-end pr-5">
+    <app-split-button label="1問追加" [disabled]="questions.length === 20" (onClick)="addQuestion(1)"
+      [model]="addQuestionButtonItems"></app-split-button>
+    <app-split-button label="すべて読み問題に変更" (onClick)="changeAllQuestionType('yomi')"
+      [model]="changeAllQuestionTypeButtonItems"></app-split-button>
+    <app-menu-button label="問題のインポート/エクスポート" icon="pi pi-bars"
+      [model]="questionDataImportExportMenuItems"></app-menu-button>
+  </div>
+  <div class="grid grid-cols-12 gap-2 px-5 pb-5">
+    <ng-container [formGroup]="questionsForm">
+      <ng-container formArrayName="questions">
+        <ng-container *ngFor="let question of questions.controls; let i=index">
+          <app-question-card [index]="i" [formGroup]="question" [isTrashDisabled]="isTrashDisabled"
+            (remove)="removeQuestion($event)" class="col-span-12 md:col-span-6"></app-question-card>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div class="flex md:hidden flex-row my-3 gap-3 w-full justify-end px-5">
+    <app-menu-button label="メニュー" icon="pi pi-bars" [model]="smartPhoneMenuItems"></app-menu-button>
+    <app-split-button label="1問追加" [disabled]="questions.length === 20" (onClick)="addQuestion(1)"
+      [model]="addQuestionButtonItems"></app-split-button>
+  </div>
+</div>

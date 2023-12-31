@@ -1,0 +1,34 @@
+.layeredCanvas {
+    position: relative;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+.layeredCanvas::before {
+    content: "";
+    display: block;
+    padding-top: 75%;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    max-width: 100%;
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
+}
+
+#answerCanvas {
+    z-index: 3;
+}
+
+#questionCanvas {
+    z-index: 2;
+}
+
+#bgCanvas {
+    z-index: 1;
+}

@@ -1,0 +1,19 @@
+<div class="w-max relative" (clickOutside)="clickInsideOrOutSide($event)">
+  <input type="button" [id]="inputId" class="absolute opacity-0 hidden h-0 w-0" (click)="toggleMenuOpen()">
+  <label [htmlFor]="inputId"
+    class="inline-flex items-center gap-2 justify-center w-full rounded-md bg-blue-500 hover:bg-blue-700 py-2 px-4 font-bold text-white cursor-pointer select-none">
+    <i *ngIf="icon" [class]="icon"></i>
+    <div *ngIf="label">{{label}}</div>
+  </label>
+  <ul #menuElement
+    [ngClass]="{'scale-y-100':isMenuOpen, '!origin-bottom bottom-10':isMenuOverflowY, 'right-0':isMenuOverflowX}"
+    class="absolute z-50 scale-y-0 border rounded-md shadow-md bg-white w-max min-w-full transition-transform origin-top">
+    <li *ngFor="let item of model" class="w-full">
+      <button type="button" [disabled]="item?.disabled" (click)="menuItemClicked($event,item.command)"
+        class="inline-flex items-center gap-2 px-4 py-2 w-full text-sm text-left text-gray-700 hover:bg-gray-100">
+        <i *ngIf="item.icon" [class]="item.icon"></i>
+        <div>{{item?.label}}</div>
+      </button>
+    </li>
+  </ul>
+</div>

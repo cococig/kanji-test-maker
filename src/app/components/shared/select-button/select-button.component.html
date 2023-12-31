@@ -1,0 +1,11 @@
+<fieldset [disabled]="disabled">
+  <label *ngFor="let option of options" [ngClass]="{
+        'bg-blue-500 hover:bg-blue-700 text-white': option.value === value,
+        'text-gray-600 hover:bg-gray-100': option.value !== value
+      }"
+    class="border border-blue-500 hover:border-blue-700 cursor-pointer py-2 px-3 font-bold select-none first-of-type:rounded-l-md last-of-type:rounded-r-md w-max transition-all duration-300">
+    <input type="radio" [name]="inputName" [value]="option.value" [checked]="option.value === value"
+      (change)="updateValue(option.value)" class="hidden">
+    {{option.label}}
+  </label>
+</fieldset>

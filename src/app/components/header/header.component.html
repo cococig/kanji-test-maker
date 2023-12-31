@@ -1,0 +1,20 @@
+<nav class="flex flex-wrap justify-between items-center p-4" [style]="{backgroundColor:'#4b6251'}">
+  <div>
+    <h1 class="text-4xl mt-1 font-bold font-serif text-white/90">
+      漢字テストメーカー</h1>
+  </div>
+  <div>
+    <div class="hidden md:flex justify-center items-center gap-4">
+      <a class="text-white/90 font-bold cursor-pointer hover:underline" (click)="showAboutModal()">このサイトについて</a>
+      <a class="text-white/90 font-bold cursor-pointer hover:underline" (click)="showUsageModal()">つかいかた</a>
+      <a class="text-white/90 font-bold cursor-pointer hover:underline" (click)="showUpdateHistoryModal()">更新履歴</a>
+    </div>
+    <div class="md:hidden">
+      <app-menu-button icon="pi pi-bars" [model]="smartPhoneMenuItems"></app-menu-button>
+    </div>
+  </div>
+</nav>
+
+<app-about-modal [(visible)]="visibleAboutModal"></app-about-modal>
+<app-usage-modal [(visible)]="visibleUsageModal"></app-usage-modal>
+<app-update-history-modal [(visible)]="visibleUpdateHistoryModal"></app-update-history-modal>

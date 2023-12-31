@@ -1,0 +1,33 @@
+<app-modal header="利用規約" [visible]="visible" (visibleChange)="visibleChange.emit($event)">
+  <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-2">
+      <div>
+        <h2>画像の利用について</h2>
+        <p>漢字テストメーカーにより生成された画像は商用・非商用を問わず無償でご利用いただけます。使用にあたって報告等は不要です。</p>
+        <p>ただし、本サイトで生成した画像や本サイトを利用したことによるいかなるトラブル・損害も、一切の責任を負いかねます。</p>
+        <p>画像の加工については、以下の通りとします。</p>
+      </div>
+      <div>
+        <h3>非商用利用の場合</h3>
+        <ul>
+          <li>画像の二次配布・編集・加工等、全て自由です</li>
+        </ul>
+      </div>
+      <div>
+        <h3>商用利用の場合</h3>
+        <ul>
+          <li>画像右下の「漢字テストメーカー」の文字を残していただければ、自由に編集・加工等して頂いて構いません。</li>
+          <li>やむを得ず「漢字テストメーカー」の文字を取り除く場合、当サイトの名称とリンクの容易に確認できる箇所への記載をお願いします。</li>
+          <li>二次配布を行う場合も、必ず当サイトのリンクを記載してください。</li>
+          <li>その他、不明点については<span><a href="https://twitter.com/cococig" target="_blank"
+                rel="noopener noreferrer">Twitter</a></span>か<span><a href="https://github.com/cococig" target="_blank"
+                rel="noopener noreferrer">GitHub</a></span>にてお問い合わせください。</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h2>その他</h2>
+      <p>本利用規約は、予告なく変更する場合があります。</p>
+    </div>
+  </div>
+</app-modal>

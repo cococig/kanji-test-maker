@@ -1,0 +1,5 @@
+<button (click)="onClick.emit($event)" [tabIndex]="tabIndex" [disabled]="disabled"
+  [ngClass]="{'disabled:bg-blue-400 enabled:bg-blue-500 enabled:hover:bg-blue-700 text-white':!isOutlined, 'text-black [&:not(:disabled)]:hover:bg-gray-100 disabled:bg-gray-100':isOutlined, 'px-3':isIconOnly, 'px-4':!isIconOnly }"
+  class="rounded-md py-2 font-bold border disabled:border-blue-400 enabled:border-blue-500 enabled:hover:border-blue-700"><i
+    [ngClass]="icon" [ngStyle]="{color:disabled?'rgb(107 114 128)':''}" *ngIf="icon"></i><span *ngIf="label"
+    [ngClass]="{'ml-2':icon}">{{label}}</span></button>
