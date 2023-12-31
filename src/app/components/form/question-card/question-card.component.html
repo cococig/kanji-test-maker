@@ -4,20 +4,15 @@
       <div class="flex flex-row justify-between">
         <h2 class="font-bold text-xl">{{index + 1}}問目</h2>
         <div class="flex flex-row items-center gap-2">
-          <!--<p-selectButton pRipple [options]="[{label: '書き', value: 'kaki'}, {label: '読み', value: 'yomi'}]"
-            formControlName="questionType"></p-selectButton>-->
           <app-select-button [options]="[{label: '書き', value: 'kaki'}, {label: '読み', value: 'yomi'}]"
             formControlName="questionType"></app-select-button>
-          <!--<p-button pRipple type="button" icon="pi pi-trash" [disabled]="isTrashDisabled"
-            styleClass="p-button-secondary p-button-outlined" (click)="remove.emit(index)"></p-button>-->
-          <app-button icon="pi pi-trash" [disabled]="isTrashDisabled" [isOutlined]="true"
+          <app-button icon="pi pi-trash" [tabIndex]="-1" [disabled]="isTrashDisabled" [isOutlined]="true"
             (onClick)="remove.emit(index)"></app-button>
         </div>
       </div>
       <div class="flex flex-col">
         <div class="flex flex-col">
           <label [htmlFor]="'fullText'+index">問題文</label>
-          <!--<input id="fullText" type="text" placeholder="漢字テスト" pInputText formControlName="fullText">-->
           <input type="text" [name]="'fullText'+index" [id]="'fullText'+index" placeholder="漢字テスト"
             formControlName="fullText" class="border border-gray-300 focus:outline-blue-500 rounded-md p-2"
             [ngClass]="{'border-red-500 focus:outline-red-500':formGroup.hasError('maxLengthFullText')}">
@@ -28,8 +23,6 @@
             <app-auto-complete [id]="'targetKanji'+index" type="text" placeholder="漢字"
               [suggestions]="suggestionTargetKanji" [invalid]="formGroup.hasError('notIncludeTargetKanjiInFullText')"
               formControlName="targetKanji"></app-auto-complete>
-            <!--<p-autoComplete id="targetKanji" type="text" placeholder="漢字" [suggestions]="suggestionTargetKanji"
-              [lazy]="true" [completeOnFocus]="true" formControlName="targetKanji"></p-autoComplete>-->
           </div>
           <div class="flex flex-col w-1/2">
             <label [htmlFor]="'yomigana'+index">よみがな</label>
