@@ -1,21 +1,11 @@
 <div class="flex flex-col flex-grow mx-auto items-center justify-start w-full">
   <div class="hidden md:flex flex-row my-3 gap-3 w-full justify-end pr-5">
-    <!--
-      <p-splitButton label="1問追加" icon="pi pi-plus" [disabled]="questions.length === 20" (onClick)="addQuestion(1)"
-        [model]="addQuestionButtonItems"></p-splitButton>
-      <p-splitButton label="すべて読み問題に変更" (onClick)="changeAllQuestionType('yomi')"
-        [model]="changeAllQuestionTypeButtonItems"></p-splitButton>
-      -->
     <app-split-button label="1問追加" [disabled]="questions.length === 20" (onClick)="addQuestion(1)"
       [model]="addQuestionButtonItems"></app-split-button>
     <app-split-button label="すべて読み問題に変更" (onClick)="changeAllQuestionType('yomi')"
       [model]="changeAllQuestionTypeButtonItems"></app-split-button>
     <app-menu-button label="問題のインポート/エクスポート" icon="pi pi-bars"
       [model]="questionDataImportExportMenuItems"></app-menu-button>
-    <!--
-      <p-menu #menu [model]="questionDataImportExportMenuItems" [popup]="true"></p-menu>
-      <p-button (click)="menu.toggle($event)" icon="pi pi-bars" label="問題のインポート/エクスポート"></p-button>
-      -->
   </div>
   <div class="grid grid-cols-12 gap-2 px-5 pb-5">
     <ng-container [formGroup]="questionsForm">

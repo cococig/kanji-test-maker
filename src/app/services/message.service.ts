@@ -17,6 +17,5 @@ export class MessageService {
 		duration = 3000,
 	) {
 		this.messages.next({ message, type, duration });
-		console.log(message);
 	}
 }

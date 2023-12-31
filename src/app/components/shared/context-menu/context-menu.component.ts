@@ -17,7 +17,6 @@ export class ContextMenuComponent implements OnDestroy {
 	private scrollListener?: (() => void) | null;
 
 	showContextMenu(event: MouseEvent) {
-		console.log("show context menu");
 		event.preventDefault();
 		this.posX = event.clientX;
 		this.posY = event.clientY;
@@ -46,7 +45,6 @@ export class ContextMenuComponent implements OnDestroy {
 	}
 
 	private onScroll() {
-		console.log("onScroll");
 		this.closeContextMenu();
 	}
 

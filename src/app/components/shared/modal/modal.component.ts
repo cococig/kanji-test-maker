@@ -43,11 +43,9 @@ export class ModalComponent implements OnChanges {
 			if (changesVisible.currentValue === true) {
 				this.dialog.nativeElement.showModal();
 				this.document.body.style.overflow = "hidden";
-				console.log(changesVisible);
 			} else if (changesVisible.currentValue === false) {
 				this.dialog.nativeElement.close();
 				this.document.body.style.overflow = "";
-				console.log("close");
 			}
 		}
 	}
