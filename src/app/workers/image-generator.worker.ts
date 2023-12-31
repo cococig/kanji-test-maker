@@ -113,7 +113,7 @@ abstract class AbstractKanjiTestCanvas {
 			// Windowsの場合、フォントを游明朝に設定
 			fontFamily = "游明朝";
 		} else {
-			fontFamily = "Noto Serif JP";
+			fontFamily = "serif";
 		}
 
 		return fontFamily;
