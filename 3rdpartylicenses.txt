@@ -13,6 +13,9 @@ MIT
 @angular/platform-browser
 MIT
 
+@angular/service-worker
+MIT
+
 primeicons
 MIT
 MIT License

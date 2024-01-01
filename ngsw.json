@@ -1,0 +1,99 @@
+{
+  "configVersion": 1,
+  "timestamp": 1704097468092,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/88.7cfde714a34d912b.js",
+        "/index.html",
+        "/main.ecb612e8356f69e0.js",
+        "/manifest.webmanifest",
+        "/polyfills.f9a945ba8a53382b.js",
+        "/runtime.0d18c7db7d887d3e.js",
+        "/styles.8c0050146cb32c98.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/apple-touch-icon.png",
+        "/assets/favicon.ico",
+        "/assets/hero.webp",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/ogp.webp",
+        "/assets/twittercard.webp",
+        "/primeicons.0112589c5695a9ed.ttf",
+        "/primeicons.943ab24c43224d29.svg",
+        "/primeicons.ba3f916dfb64be8c.woff2",
+        "/primeicons.f8b9e8a4e401b603.woff"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/88.7cfde714a34d912b.js": "eab7146e18c1f36adfa79ca7c869a54b649e87b7",
+    "/assets/apple-touch-icon.png": "9b70696a4d6b589109af50e85ccc9c405fee34eb",
+    "/assets/favicon.ico": "7eba0c065c8f7d067a087a710a868572905c5a72",
+    "/assets/hero.webp": "bf03de7bb940bf4116f6c98f80cd859b37a4347d",
+    "/assets/icons/icon-128x128.png": "62179361b59e7d5f22fb3851dc60341a493649b3",
+    "/assets/icons/icon-144x144.png": "8e900a8092506fb170577a68e77a74e782c2fa80",
+    "/assets/icons/icon-152x152.png": "7c17b33f8f5545bc12708faced0690b771b8c8e6",
+    "/assets/icons/icon-192x192.png": "242404666055b714c4b3ed7281268dbbba9f6713",
+    "/assets/icons/icon-384x384.png": "d00f7a90d50180329cd5cccf2be23d2e9b038f3d",
+    "/assets/icons/icon-512x512.png": "bc25e1526928c9daeec0c32bbd2609aa83851647",
+    "/assets/icons/icon-72x72.png": "9959afa8b4643aa7f0aa693adbf0e3f984350358",
+    "/assets/icons/icon-96x96.png": "a0588e40bcba6b89b3fcfc6531baac156ceb42e6",
+    "/assets/ogp.webp": "60c1c587f9e167570f07fbd88d073f915969e627",
+    "/assets/twittercard.webp": "6ea690c51854057a4fcfdb2cc980c2f8c31f9bf0",
+    "/index.html": "fa39b115b96a753b9d3296c14d0b534aa7d6eedd",
+    "/main.ecb612e8356f69e0.js": "19824421d80a3fa925750422175f7eb880164130",
+    "/manifest.webmanifest": "51c0b15b666e95dcc9dbce605a530debb20296d8",
+    "/polyfills.f9a945ba8a53382b.js": "d19e280d064ae34f5813fe145a7f834791d5cf4e",
+    "/primeicons.0112589c5695a9ed.ttf": "ceeb46d594fde5cc507cdf8b70e38e78fe47653c",
+    "/primeicons.943ab24c43224d29.svg": "d3332a45242b8f6edbf3f3c7176a280e7edcd961",
+    "/primeicons.ba3f916dfb64be8c.woff2": "55a4b2a5f02e362405d8d874903af0b5f6a6c15d",
+    "/primeicons.f8b9e8a4e401b603.woff": "b1648b50be13350fde8b5d9a6fe78354ddcc43e4",
+    "/runtime.0d18c7db7d887d3e.js": "408db3d755c0885b85ad837fe020404d10770bde",
+    "/styles.8c0050146cb32c98.css": "ae6b67530119170c5542a1b9991d56abc46f932d"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
