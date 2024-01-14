@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1704281537961,
+  "timestamp": 1705256857218,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/88.7cfde714a34d912b.js",
         "/index.html",
-        "/main.daf1c36fd0e6e6bc.js",
+        "/main.53c5c80b4fd7bede.js",
         "/manifest.webmanifest",
         "/polyfills.f9a945ba8a53382b.js",
         "/runtime.0d18c7db7d887d3e.js",
@@ -66,8 +66,8 @@
     "/assets/icons/icon-96x96.png": "a0588e40bcba6b89b3fcfc6531baac156ceb42e6",
     "/assets/ogp.webp": "60c1c587f9e167570f07fbd88d073f915969e627",
     "/assets/twittercard.webp": "6ea690c51854057a4fcfdb2cc980c2f8c31f9bf0",
-    "/index.html": "5396e9823c394c57991ebf5830cc12651f4a2f29",
-    "/main.daf1c36fd0e6e6bc.js": "e58cb9583336db157e327fb4720975d0a4a09dd2",
+    "/index.html": "ddd98043249762f63df566a8894b20915774f6fe",
+    "/main.53c5c80b4fd7bede.js": "464df296161ba1ff5d6a6c025133863b918ac518",
     "/manifest.webmanifest": "51c0b15b666e95dcc9dbce605a530debb20296d8",
     "/polyfills.f9a945ba8a53382b.js": "d19e280d064ae34f5813fe145a7f834791d5cf4e",
     "/primeicons.0112589c5695a9ed.ttf": "ceeb46d594fde5cc507cdf8b70e38e78fe47653c",
