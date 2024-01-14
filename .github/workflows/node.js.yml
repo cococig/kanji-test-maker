@@ -8,6 +8,8 @@ on:
     branches: ["master"]
     paths:
       - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
   workflow_dispatch:
     branches: ["master"]
 
