@@ -1,16 +1,18 @@
-<div class="hidden md:flex my-3 w-full gap-3 justify-start">
-  <app-toggle-button onLabel="解答を表示" offLabel="解答を非表示" [(value)]="isHiddenAnswerCanvas"></app-toggle-button>
-  <app-menu-button label="ダウンロード" icon="pi pi-bars" [model]="downloadMenu"></app-menu-button>
-</div>
-<app-context-menu [model]="contextMenu">
-  <div #layeredCanvas class="layeredCanvas">
-    <canvas #answerCanvas id="answerCanvas" width="1200" height="900"
-      [ngStyle]="{visibility:isHiddenAnswerCanvas?'hidden':'visible'}"></canvas>
-    <canvas #questionCanvas id="questionCanvas" width="1200" height="900"></canvas>
-    <canvas #bgCanvas id="bgCanvas" width="1200" height="900"></canvas>
+<div class="relative">
+  <div class="hidden md:flex my-3 w-full gap-3 justify-start relative z-50">
+    <app-toggle-button onLabel="解答を表示" offLabel="解答を非表示" [(value)]="isHiddenAnswerCanvas"></app-toggle-button>
+    <app-menu-button label="ダウンロード" icon="pi pi-bars" [model]="downloadMenu"></app-menu-button>
   </div>
-</app-context-menu>
-<div class="flex md:hidden pt-3 w-full gap-3 justify-end">
-  <app-toggle-button onLabel="解答を表示" offLabel="解答を非表示" [(value)]="isHiddenAnswerCanvas"></app-toggle-button>
-  <app-menu-button label="ダウンロード" icon="pi pi-bars" [model]="downloadMenu"></app-menu-button>
+  <app-context-menu [model]="contextMenu">
+    <div #layeredCanvas class="layeredCanvas">
+      <canvas #answerCanvas id="answerCanvas" width="1200" height="900"
+        [ngStyle]="{visibility:isHiddenAnswerCanvas?'hidden':'visible'}"></canvas>
+      <canvas #questionCanvas id="questionCanvas" width="1200" height="900"></canvas>
+      <canvas #bgCanvas id="bgCanvas" width="1200" height="900"></canvas>
+    </div>
+  </app-context-menu>
+  <div class="flex md:hidden pt-3 w-full gap-3 justify-end">
+    <app-toggle-button onLabel="解答を表示" offLabel="解答を非表示" [(value)]="isHiddenAnswerCanvas"></app-toggle-button>
+    <app-menu-button label="ダウンロード" icon="pi pi-bars" [model]="downloadMenu"></app-menu-button>
+  </div>
 </div>
